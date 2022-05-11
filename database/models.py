@@ -17,9 +17,9 @@ class Offer(BaseModel):
     title = CharField(max_length=100)
     price = IntegerField()
     url = CharField(max_length=200)
-    geo = CharField(max_length=250)
     description = TextField()
-    date_pub = DateTimeField(default=datetime.now())
+    geo = CharField(max_length=250)
+    date = DateTimeField(default=datetime.now())
 
     class Meta:
         table_name = 'offers'

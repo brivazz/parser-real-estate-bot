@@ -1,7 +1,7 @@
 from database.models import db
-from parser import avito_parser
-from parser import cian_parser
-from parser import yandex_parser
+from parsers import avito_parser
+from parsers import cian_parser
+from parsers import yandex_parser
 
 
 def main():

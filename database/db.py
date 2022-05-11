@@ -1,4 +1,4 @@
-from .models import db, Offer
+from database.models import db, Offer
 
 
 def check_database(id: int):
@@ -6,6 +6,8 @@ def check_database(id: int):
         offers = Offer.select()
         for offer in offers:
             if offer.offer_id == id:
+                if offer.offer_id is None:
+                    return None
                 return offer.offer_id
     return None
 
@@ -20,5 +22,5 @@ def save_to_db(items: list):
                 url=item['url'],
                 geo=item['geo'],
                 description=item['description'],
-                date_pub=item['date']
+                date=item['date']
             )

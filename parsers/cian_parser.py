@@ -4,6 +4,9 @@ import requests
 from database import db
 
 
+import json
+
+
 def get_json():
 
     cookies = {
@@ -56,12 +59,15 @@ def get_json():
 
     data = '{"jsonQuery":{"sort":{"type":"term","value":"creation_date_desc"},"is_by_homeowner":{"type":"term","value":true},"_type":"suburbansale","suburban_offer_filter":{"type":"term","value":2},"region":{"type":"terms","value":[2]},"object_type":{"type":"terms","value":[1,2,3,4]},"engine_version":{"type":"term","value":2},"currency":{"type":"term","value":2},"price":{"type":"range","value":{"lte":3000000}}}}'
 
-    url = 'https://api.cian.ru/search-offers/v2/search-offers-desktop/'
-    response = requests.post(url=url,
-                             cookies=cookies,
-                             headers=headers,
-                             data=data)
-    result = response.json()
+    # url = 'https://api.cian.ru/search-offers/v2/search-offers-desktop/'
+    # response = requests.post(url=url,
+    #                          cookies=cookies,
+    #                          headers=headers,
+    #                          data=data)
+    # result = response.json()
+    with open(r'C:\Users\yatep\OneDrive\Рабочий стол\Evgeny_Lukin_Parser_2\data_from_parsing\cian_dict.json', encoding='utf-8') as file:
+        result = json.load(file)
+    # print(result)
 
     return result
 
