@@ -1,6 +1,7 @@
 import asyncio
 from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart
+from aiogram.utils.markdown import hbold, hlink
 
 from utils.create_bot import dp, bot
 from utils.config import MY_ID
@@ -38,18 +39,14 @@ async def offer_every_hour():
 
 
 async def send_to_me(items: list):
-    try:
-        if len(items) >= 1:
-            for item in items:
-                title = item['title']
-                price = item['price']
-                url = item['url']
-                description = item['description']
-                geo = item['geo']
-                date = item['date']
+    if items:
+        for item in items:
+            title = f"{hlink(item['title'], item['url'])}"
+            price = hbold('{:,d}'.format(item['price'])) + ' руб.'
+            description = item['description']
+            geo = hbold(item['geo'])
+            date = hbold(item['date'])
 
-                offer = f'{title}\n{price}\n{url}\n{description}\n{geo}\n{date}'
+            offer = f'{price}\n\n{title}\n\n{geo}\n\n{description}\n\n{date}\n'
 
-                await bot.send_message(MY_ID, offer)
-    except Exception as err:
-        print('Ошибка: ', err)
+            await bot.send_message(MY_ID, offer)
