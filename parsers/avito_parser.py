@@ -36,11 +36,9 @@ def get_html(URL):
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36'
     }
 
-    # response = requests.get(url=URL, headers=headers)
-    # response.raise_for_status()
-    # html = response.text
-    with open(r'C:\Users\yatep\OneDrive\Рабочий стол\Evgeny_Lukin_Parser_2\data_from_parsing\avito_doma_do_3mln.html', encoding='utf-8') as file:
-        html = file.read()
+    response = requests.get(url=URL, headers=headers)
+    response.raise_for_status()
+    html = response.text
 
     return html
 
