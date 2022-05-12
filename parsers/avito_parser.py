@@ -1,4 +1,3 @@
-import time
 import json
 from datetime import datetime
 from urllib.parse import unquote
@@ -37,9 +36,12 @@ def get_html(URL):
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36'
     }
 
-    response = requests.get(url=URL, headers=headers)
-    response.raise_for_status()
-    html = response.text
+    # response = requests.get(url=URL, headers=headers)
+    # response.raise_for_status()
+    # html = response.text
+
+    with open(r'C:\Users\yatep\OneDrive\Рабочий стол\Evgeny_Lukin_Parser_2\data_from_parsing\avito_doma_do_3mln.html', encoding='utf-8') as file:
+        html = file.read()
 
     return html
 
@@ -94,4 +96,5 @@ def get_offers(data: dict) -> list:
 def main():
     html = get_html(URL)
     data = get_json(html)
-    get_offers(data)
+    offers = get_offers(data)
+    return offers
