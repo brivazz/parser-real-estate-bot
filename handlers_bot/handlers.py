@@ -31,25 +31,28 @@ async def offer_every_hour():
             if avito:
                 await send_to_me(avito)
         except Exception:
+            print('avito==None')
             continue
         try:
             cian = await cian_parser.main()
             if cian:
                 await send_to_me(cian)
         except Exception:
+            print('cian==None')
             continue
         try:
             yandex = await yandex_parser.main()
             if yandex:
                 await send_to_me(yandex)
         except Exception:
+            print('yandex==None')
             continue
 
         await asyncio.sleep(60 * 60)
 
 
 async def send_to_me(items: list):
-    if len(offer_every_hour()) >= 1:
+    if len(items) >= 1:
         for item in items:
             id = item['id']
             title = item['title']

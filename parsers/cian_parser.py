@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 import requests
 
@@ -61,6 +62,7 @@ def get_json():
                              cookies=cookies,
                              headers=headers,
                              data=data)
+    response.raise_for_status()
     result = response.json()
 
     return result
