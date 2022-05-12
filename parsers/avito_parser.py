@@ -87,6 +87,8 @@ def get_offers(data: dict) -> list:
                     offers.append(offer)
     db.save_to_db(offers)
 
+    return offers
+
 
 def main():
     html = get_html(URL)

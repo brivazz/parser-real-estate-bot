@@ -1,14 +1,10 @@
 import logging
 from aiogram import executor
 
-
 from utils.create_bot import dp
 from utils.notify_admin import on_startup_notify, on_shutdown_notify
 from utils.set_bot_commands import set_default_commands
 from database.models import db
-from parsers import avito_parser
-from parsers import cian_parser
-from parsers import yandex_parser
 
 
 async def on_startup(dp):
@@ -18,12 +14,6 @@ async def on_startup(dp):
 
 async def on_shutdown(dp):
     await on_shutdown_notify(dp)
-
-
-def main():
-    avito_parser.main()
-    cian_parser.main()
-    yandex_parser.main()
     db.close()
 
 
@@ -37,4 +27,3 @@ if __name__ == '__main__':
                            on_startup=on_startup,
                            on_shutdown=on_shutdown,
                            skip_updates=True)
-    main()
