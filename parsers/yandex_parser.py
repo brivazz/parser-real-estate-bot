@@ -86,15 +86,12 @@ def get_json() -> dict:
     }
 
     url = 'https://realty.yandex.ru/gate/react-page/get/'
-    # response = requests.get(url=url,
-    #                         params=params,
-    #                         cookies=cookies,
-    #                         headers=headers)
-    # response.raise_for_status()
-    # data = response.json()
-    import json
-    with open(r'C:\Users\yatep\OneDrive\Рабочий стол\Evgeny_Lukin_Parser_2\data_from_parsing\yandex_dict.json', encoding='utf-8') as file:
-        data = json.load(file)
+    response = requests.get(url=url,
+                            params=params,
+                            cookies=cookies,
+                            headers=headers)
+    response.raise_for_status()
+    data = response.json()
 
     return data
 

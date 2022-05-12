@@ -14,8 +14,8 @@ from parsers import yandex_parser
 async def cmd_start(message: types.Message):
     await message.answer(
         'Бот собирает объявления о недвижимости\n\
-         с авито, циан и яндекс. Оповещение\n\
-         с каждым новым объявлением на сайтах.'
+        с авито, циан и яндекс. Оповещение\n\
+        с каждым новым объявлением на сайтах.'
     )
 
 
