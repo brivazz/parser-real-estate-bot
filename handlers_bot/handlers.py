@@ -19,21 +19,18 @@ async def cmd_start(message: types.Message):
     )
 
 
-async def offer_every_hour():
+async def offers_every_hour():
     await asyncio.sleep(5)
 
     while True:
         avito = avito_parser.main()
         await send_to_me(avito)
-        print('avito==None')
 
         cian = cian_parser.main()
         await send_to_me(cian)
-        print('cian==None')
 
         yandex = yandex_parser.main()
         await send_to_me(yandex)
-        print('yandex==None')
 
         await asyncio.sleep(60 * 60)
 

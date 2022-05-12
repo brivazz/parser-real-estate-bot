@@ -6,10 +6,8 @@ def check_database(id: int):
         offers = Offer.select()
         for offer in offers:
             if offer.offer_id == id:
-                if offer.offer_id is None:
-                    return None
-                return offer.offer_id
-    return None
+                return True
+        return None
 
 
 def save_to_db(items: list):
