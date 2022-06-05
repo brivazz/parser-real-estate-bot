@@ -2,6 +2,7 @@ from datetime import datetime
 import requests
 
 from database import db
+from .proxy import get_proxy
 
 
 def get_json() -> dict:
@@ -86,10 +87,15 @@ def get_json() -> dict:
     }
 
     url = 'https://realty.yandex.ru/gate/react-page/get/'
+    p = get_proxy()
+    proxies = {
+        f"{p['schema']}": f"{p['address']}"
+    }
     response = requests.get(url=url,
                             params=params,
                             cookies=cookies,
-                            headers=headers)
+                            headers=headers,
+                            proxies=proxies)
     response.raise_for_status()
     data = response.json()
 

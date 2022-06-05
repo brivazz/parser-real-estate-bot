@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from database import db
+from .proxy import get_proxy
 
 
 URL = 'https://www.avito.ru/sankt-peterburg/doma_dachi_kottedzhi/prodam/do-3-mln-rubley-ASgBAgECAUSUA9AQAUXGmgwXeyJmcm9tIjowLCJ0byI6MzAwMDAwMH0?user=1'
@@ -35,8 +36,11 @@ def get_html(URL):
         'upgrade-insecure-requests': '1',
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36'
     }
-
-    response = requests.get(url=URL, headers=headers)
+    p = get_proxy()
+    proxies = {
+        f"{p['schema']}": f"{p['address']}"
+    }
+    response = requests.get(url=URL, headers=headers, proxies=proxies)
     response.raise_for_status()
     html = response.text
 
